@@ -16,7 +16,7 @@
  *
  */
 
-rootProject.name = "radar-data-dashboard"
+rootProject.name = "radar-data-dashboard-backend"
 
 include(":data-dashboard-backend")
 
