@@ -1,0 +1,21 @@
+---
+version: '3.5'
+
+include:
+  - data-dashboard-backend/dev/docker-compose-postgres.yml
+
+services:
+
+  data-dashboard-backend:
+    image: quay.io/radarbase/data-dashboard-backend:dev
+    build:
+      context: .
+    depends_on:
+      - data-dashboard-postgresql
+    networks:
+      - data
+    ports:
+      - "9000:9000"
+    volumes:
+      - "./dashboard.yml:/etc/radar/dashboard.yml"
+    command: ["/etc/radar/dashboard.yml"]

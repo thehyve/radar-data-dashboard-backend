@@ -1,0 +1,124 @@
+id;category;name;type;date_type
+1;Registration;PATCONSENT1;boolean;LOCAL_DATE
+2;Sociodemographics;YearOfBirth;year;LOCAL_DATE
+3;Sociodemographics;SEX;number;LOCAL_DATE
+4;Sociodemographics;HEIGHTPAT;number;LOCAL_DATE
+5;Sociodemographics;WEIGHTPAT;number;LOCAL_DATE
+6;Sociodemographics;EducationLevel;number;LOCAL_DATE
+7;Sociodemographics;LivingArrangements;number;LOCAL_DATE
+8;Sociodemographics;ZIPCODE;number;LOCAL_DATE
+9;Medical History;DIABTYPEPAT;number;LOCAL_DATE
+10;Medical History;YODIAG;year;LOCAL_DATE
+11;Medical History;DMFAM;number;LOCAL_DATE
+12;Medical History;CARDIOACUTE;number;LOCAL_DATE
+13;Medical History;STROKEACUTE;number;LOCAL_DATE
+14;Medical History;CHDPAT;number;LOCAL_DATE
+15;Medical History;HFPAT;number;LOCAL_DATE
+16;Medical History;CKD;number;LOCAL_DATE
+17;Medical History;DMRETINO;number;LOCAL_DATE
+18;Medical History;DMMACU;number;LOCAL_DATE
+19;Medical History;LULLCPAT;number;LOCAL_DATE
+20;Medical History;LLAMPPAT;number;LOCAL_DATE
+21;Medical History;EDPAT;number;LOCAL_DATE
+22;Medical History;PERIODONPAT;number;LOCAL_DATE
+23;Medical History;NODIABCOM;number;LOCAL_DATE
+24;Treatment;TRDIETEXC;number;LOCAL_DATE
+25;Treatment;TRTAB;number;LOCAL_DATE
+26;Treatment;TRGLP1;number;LOCAL_DATE
+27;Treatment;TRLONGINS;number;LOCAL_DATE
+28;Treatment;TRSHORTINS;number;LOCAL_DATE
+29;Treatment;TRPUMP;number;LOCAL_DATE
+30;Treatment;TROTHER;number;LOCAL_DATE
+31;Treatment;TRNO;number;LOCAL_DATE
+32;Treatment;TRMET;number;LOCAL_DATE
+33;Treatment;TRSGLT2;number;LOCAL_DATE
+34;Treatment;TRDPP4;number;LOCAL_DATE
+35;Treatment;TRSULF;number;LOCAL_DATE
+36;Treatment;TRGLINIDE;number;LOCAL_DATE
+37;Treatment;TRGLITAZONE;number;LOCAL_DATE
+38;Treatment;TRGLYCOSIDASE;number;LOCAL_DATE
+39;Treatment;TRDONTKNOW;number;LOCAL_DATE
+40;Treatment;GLCMEASURE;number;LOCAL_DATE
+41;Treatment;BPLTHEREPAT;number;LOCAL_DATE
+42;Treatment;LIPTHERAPAT;number;LOCAL_DATE
+43;Treatment;CARDINT;number;LOCAL_DATE
+44;Treatment;CARDSURG;number;LOCAL_DATE
+45;Treatment;LASER;number;LOCAL_DATE
+46;Treatment;DIALYSISPAT;number;LOCAL_DATE
+47;Treatment;NOFURTHERTR;number;LOCAL_DATE
+48;Examinations;EYEEXAM;number;LOCAL_DATE
+49;Examinations;FOOTEXAM;number;LOCAL_DATE
+50;Examinations;HYPOSUP;number;LOCAL_DATE
+51;Examinations;HYPONOSUP;number;LOCAL_DATE
+52;Examinations;DKAHHSPAT;number;LOCAL_DATE
+53;Examinations;HYPOANX;number;LOCAL_DATE
+54;Health Behavior;SmokingStatus;number;LOCAL_DATE
+55;Health Behavior;ALCFREQ1;number;LOCAL_DATE
+56;Health Behavior;HEALTYDIET;number;LOCAL_DATE
+57;Health Behavior;BINGE;number;LOCAL_DATE
+58;Health Behavior;PHYSACTSEN;number;LOCAL_DATE
+59;Functional Health Status - Psychosocial;Global01;number;LOCAL_DATE
+60;Functional Health Status - Psychosocial;TRANS3MON;number;LOCAL_DATE
+61;Functional Health Status - Psychosocial;PFA11;number;LOCAL_DATE
+62;Functional Health Status - Psychosocial;PFA21;number;LOCAL_DATE
+63;Functional Health Status - Psychosocial;PFA23;number;LOCAL_DATE
+64;Functional Health Status - Psychosocial;PFA53;number;LOCAL_DATE
+65;Functional Health Status - Psychosocial;PFTHETA;number;LOCAL_DATE
+66;Functional Health Status - Psychosocial;PFSE;number;LOCAL_DATE
+67;Functional Health Status - Psychosocial;HI7;number;LOCAL_DATE
+68;Functional Health Status - Psychosocial;AN3;number;LOCAL_DATE
+69;Functional Health Status - Psychosocial;FATEXP41;number;LOCAL_DATE
+70;Functional Health Status - Psychosocial;FATEXP40;number;LOCAL_DATE
+71;Functional Health Status - Psychosocial;FATTHETA;number;LOCAL_DATE
+72;Functional Health Status - Psychosocial;FATSE;number;LOCAL_DATE
+73;Functional Health Status - Psychosocial;PC8r;number;LOCAL_DATE
+74;Functional Health Status - Psychosocial;PC13r;number;LOCAL_DATE
+75;Functional Health Status - Psychosocial;COGTHETA;number;LOCAL_DATE
+76;Functional Health Status - Psychosocial;COGSE;number;LOCAL_DATE
+77;Functional Health Status - Psychosocial;EDDEP04;number;LOCAL_DATE
+78;Functional Health Status - Psychosocial;EDDEP06;number;LOCAL_DATE
+79;Functional Health Status - Psychosocial;EDDEP29;number;LOCAL_DATE
+80;Functional Health Status - Psychosocial;EDDEP41;number;LOCAL_DATE
+81;Functional Health Status - Psychosocial;DEPTHETA;number;LOCAL_DATE
+82;Functional Health Status - Psychosocial;DEPSE;number;LOCAL_DATE
+83;Functional Health Status - Psychosocial;EDANX01;number;LOCAL_DATE
+84;Functional Health Status - Psychosocial;EDANX53;number;LOCAL_DATE
+85;Functional Health Status - Psychosocial;ANXTHETA;number;LOCAL_DATE
+86;Functional Health Status - Psychosocial;ANXSE;number;LOCAL_DATE
+87;Functional Health Status - Psychosocial;SRPPER11_CaPS;number;LOCAL_DATE
+88;Functional Health Status - Psychosocial;SRPPER18_CaPS;number;LOCAL_DATE
+89;Functional Health Status - Psychosocial;SRPPER23_CaPS;number;LOCAL_DATE
+90;Functional Health Status - Psychosocial;SRPPER46_CaPS;number;LOCAL_DATE
+91;Functional Health Status - Psychosocial;SFTHETA;number;LOCAL_DATE
+92;Functional Health Status - Psychosocial;SFSE;number;LOCAL_DATE
+93;Functional Health Status - Psychosocial;Sleep116;number;LOCAL_DATE
+94;Functional Health Status - Psychosocial;Sleep20;number;LOCAL_DATE
+95;Functional Health Status - Psychosocial;Sleep44;number;LOCAL_DATE
+96;Functional Health Status - Psychosocial;Sleep109;number;LOCAL_DATE
+97;Functional Health Status - Psychosocial;SLEEPTHETA;number;LOCAL_DATE
+98;Functional Health Status - Psychosocial;SLEEPSE;number;LOCAL_DATE
+99;Functional Health Status - Psychosocial;PAININ22;number;LOCAL_DATE
+100;Functional Health Status - Psychosocial;PAININ31;number;LOCAL_DATE
+101;Functional Health Status - Psychosocial;PAINTHETA;number;LOCAL_DATE
+102;Functional Health Status - Psychosocial;PAINSE;number;LOCAL_DATE
+103;Functional Health Status - Psychosocial;Global07;number;LOCAL_DATE
+104;Functional Health Status - Psychosocial;NEUROPAT;number;LOCAL_DATE
+105;Functional Health Status - Psychosocial;GISYMP;number;LOCAL_DATE
+106;Functional Health Status - Psychosocial;UISYMP;number;LOCAL_DATE
+107;Functional Health Status - Psychosocial;ERRECTIL;number;LOCAL_DATE
+108;Functional Health Status - Psychosocial;VISIMP;number;LOCAL_DATE
+109;Functional Health Status - Psychosocial;EATBEH;number;LOCAL_DATE
+110;Functional Health Status - Psychosocial;GLCREG;number;LOCAL_DATE
+111;Functional Health Status - Psychosocial;DISSSTRESS;number;LOCAL_DATE
+112;Functional Health Status - Psychosocial;GLCSTA;number;LOCAL_DATE
+113;Functional Health Status - Psychosocial;THREATSAT;number;LOCAL_DATE
+114;Functional Health Status - Psychosocial;GOALACH;number;LOCAL_DATE
+115;Functional Health Status - Psychosocial;THERKNOW1;number;LOCAL_DATE
+116;Functional Health Status - Psychosocial;THERKNOW2;number;LOCAL_DATE
+117;Functional Health Status - Psychosocial;THERKNOW3;number;LOCAL_DATE
+118;Functional Health Status - Psychosocial;THERKNOW4;number;LOCAL_DATE
+119;Functional Health Status - Psychosocial;THERKNOW5;number;LOCAL_DATE
+120;Functional Health Status - Psychosocial;THERAD;number;LOCAL_DATE
+121;Functional Health Status - Psychosocial;HCACCESS;number;LOCAL_DATE
+122;Functional Health Status - Psychosocial;DISCUTHREAT;number;LOCAL_DATE
+123;Functional Health Status - Psychosocial;SUPPTHREAT;number;LOCAL_DATE

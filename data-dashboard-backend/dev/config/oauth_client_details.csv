@@ -1,0 +1,2 @@
+client_id;resource_ids;client_secret;scope;authorized_grant_types;redirect_uri;authorities;access_token_validity;refresh_token_validity;additional_information;autoapprove
+data_dashboard_api;res_DataDashboardAPI;data_dashboard_api_secret;MEASUREMENT.READ;refresh_token,authorization_code;;;43200;259200;{};

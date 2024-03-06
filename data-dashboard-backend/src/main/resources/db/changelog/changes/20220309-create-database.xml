@@ -1,0 +1,63 @@
+<!--
+  ~ /*
+  ~  *  Copyright 2024 The Hyve
+  ~  *
+  ~  *  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  *  you may not use this file except in compliance with the License.
+  ~  *  You may obtain a copy of the License at
+  ~  *
+  ~  *    http://www.apache.org/licenses/LICENSE-2.0
+  ~  *
+  ~  *  Unless required by applicable law or agreed to in writing, software
+  ~  *  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  *  See the License for the specific language governing permissions and
+  ~  *  limitations under the License.
+  ~  */
+  -->
+
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <property name="autoIncrement" value="true" dbms="mysql,postgresql,oracle,mssql"/>
+
+    <changeSet id="Create variable and observation tables" author="pim">
+        <comment>Create variable and observation tables</comment>
+        <createTable tableName="variable">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="type" type="varchar(255)"/>
+            <column name="category" type="varchar(255)"/>
+            <column name="date_type" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="observation">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="variable_id" type="bigint">
+                <constraints nullable="false"
+                             references="variable(id)"
+                             foreignKeyName="fk_observation_variable"/>
+            </column>
+            <column name="subject_id" type="varchar(255)"/>
+            <column name="date" type="timestamp with time zone"/>
+            <column name="end_date" type="timestamp with time zone"/>
+            <column name="value_numeric" type="double"/>
+            <column name="value_textual" type="clob"/>
+        </createTable>
+
+        <createIndex tableName="variable" indexName="idx_variable_name">
+            <column name="id"/>
+            <column name="name"/>
+        </createIndex>
+        <createIndex tableName="observation" indexName="idx_observation_variable">
+            <column name="variable_id"/>
+            <column name="subject_id"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
