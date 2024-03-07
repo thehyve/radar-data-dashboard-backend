@@ -24,6 +24,7 @@ dependencies {
     testImplementation("org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}")
     testImplementation("org.glassfish.jersey.test-framework:jersey-test-framework-core:${Versions.jersey}")
     testImplementation("org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2:${Versions.jersey}")
+    testImplementation("com.h2database:h2:2.2.224")
 }
 
 allOpen {

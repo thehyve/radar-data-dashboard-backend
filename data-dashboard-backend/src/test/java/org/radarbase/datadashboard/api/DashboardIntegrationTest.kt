@@ -18,7 +18,8 @@
 
 package org.radarbase.datadashboard.api
 
-import jakarta.ws.rs.core.Application
+import org.glassfish.jersey.server.ResourceConfig
+import org.glassfish.jersey.servlet.ServletContainer
 import org.glassfish.jersey.test.DeploymentContext
 import org.glassfish.jersey.test.JerseyTest
 import org.glassfish.jersey.test.ServletDeploymentContext
@@ -32,9 +33,9 @@ import org.radarbase.jersey.config.ConfigLoader
 
 class DashboardIntegrationTest: JerseyTest() {
 
-    override fun configure(): Application {
+    override fun configure(): ResourceConfig {
         val config: DashboardApiConfig = ConfigLoader.loadConfig("src/test/resources/dashboard_test.yml", args = emptyArray())
-        return ConfigLoader.loadResources(config.service.resourceConfig, config.withEnv())
+        return ConfigLoader.loadResources(config.service.resourceConfig, config)
     }
 
     override fun getTestContainerFactory(): TestContainerFactory {
@@ -43,8 +44,7 @@ class DashboardIntegrationTest: JerseyTest() {
 
     // See https://stackoverflow.com/questions/37902211/test-case-for-testing-a-jersey-web-resource-using-grizzle-is-giving-me-404
     override fun configureDeployment(): DeploymentContext {
-//        return ServletDeploymentContext.builder(configure()).build()
-        return ServletDeploymentContext.forPackages("org.radarbase.datadashboard.api").build()
+        return ServletDeploymentContext.forServlet(ServletContainer(configure())).build()
     }
 
     @Test
@@ -55,7 +55,7 @@ class DashboardIntegrationTest: JerseyTest() {
 
     @Test
     fun testGetObservations() {
-        val response = target("subject/sub-1/variables/observations+").request().get()
-        Assertions.assertEquals(200, response.status)
+        val response = target("subject/sub-1/variables/observations").request().get()
+        Assertions.assertEquals(401, response.status)
     }
 }

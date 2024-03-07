@@ -21,7 +21,7 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
-    <property name="autoIncrement" value="true" dbms="mysql,postgresql,oracle,mssql"/>
+    <property name="autoIncrement" value="true" dbms="h2,mysql,postgresql,oracle,mssql"/>
 
     <changeSet id="Create variable and observation tables" author="pim">
         <comment>Create variable and observation tables</comment>
