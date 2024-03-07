@@ -18,11 +18,8 @@
 
 package org.radarbase.datadashboard.api.config
 
-import org.radarbase.datadashboard.api.enhancer.DashBoardApiEnhancerFactory
 import org.radarbase.jersey.auth.AuthConfig
-import org.radarbase.jersey.enhancer.EnhancerFactory
 import org.radarbase.jersey.hibernate.config.DatabaseConfig
-import java.net.URI
 
 data class DashboardApiConfig(
     val service: DashboardServiceConfig = DashboardServiceConfig(),
@@ -32,6 +29,7 @@ data class DashboardApiConfig(
     val database: DatabaseConfig = DatabaseConfig(),
 ) {
     fun withEnv(): DashboardApiConfig = copy(
+        service = service.withEnv(),
         auth = auth.withEnv(),
         database = database.withEnv(),
     )

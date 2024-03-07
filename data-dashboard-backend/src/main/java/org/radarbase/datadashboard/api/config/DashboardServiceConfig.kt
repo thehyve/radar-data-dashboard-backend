@@ -31,4 +31,13 @@ data class DashboardServiceConfig(
     val enableCors: Boolean? = false,
     val tokenExpiryTimeInMinutes: Long = 15,
     val persistentTokenExpiryInMin: Long = 3.days.inWholeMinutes,
-)
+) {
+    fun withEnv(): DashboardServiceConfig = copy(
+        baseUri = URI.create(System.getenv("RADAR_DATA_DASHBOARD_BASE_URI") ?: baseUri.toString()),
+        advertisedBaseUri = URI.create(System.getenv("RADAR_DATA_DASHBOARD_ADVERTISED_BASE_URI") ?: advertisedBaseUri.toString()),
+        frontendBaseUri = URI.create(System.getenv("RADAR_DATA_DASHBOARD_FRONTEND_BASE_URI") ?: frontendBaseUri.toString()),
+        enableCors = System.getenv("RADAR_DATA_DASHBOARD_ENABLE_CORS")?.toBoolean() ?: enableCors,
+        tokenExpiryTimeInMinutes = System.getenv("RADAR_DATA_DASHBOARD_TOKEN_EXPIRY_TIME_IN_MINUTES")?.toLong() ?: tokenExpiryTimeInMinutes,
+        persistentTokenExpiryInMin = System.getenv("RADAR_DATA_DASHBOARD_PERSISTENT_TOKEN_EXPIRY_IN_MIN")?.toLong() ?: persistentTokenExpiryInMin,
+    )
+}
