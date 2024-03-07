@@ -48,8 +48,9 @@ class DashboardIntegrationTest: JerseyTest() {
     }
 
     @Test
-    fun testGetBase() {
-        val response = target("").request().get()
+    fun testGetHealth() {
+        // Added by the health enhancer from radar-jersey.
+        val response = target("health").request().get()
         Assertions.assertEquals(200, response.status)
     }
 
