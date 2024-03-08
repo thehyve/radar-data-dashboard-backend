@@ -18,6 +18,8 @@
 
 package org.radarbase.datadashboard.api
 
+import jakarta.ws.rs.core.HttpHeaders
+import org.glassfish.hk2.utilities.binding.AbstractBinder
 import org.glassfish.jersey.server.ResourceConfig
 import org.glassfish.jersey.servlet.ServletContainer
 import org.glassfish.jersey.test.DeploymentContext
@@ -28,14 +30,25 @@ import org.glassfish.jersey.test.spi.TestContainerFactory
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.radarbase.datadashboard.api.config.DashboardApiConfig
+import org.radarbase.jersey.auth.AuthValidator
+import org.radarbase.jersey.auth.disabled.DisabledAuthValidator
 import org.radarbase.jersey.config.ConfigLoader
 
 
 class DashboardIntegrationTest: JerseyTest() {
 
+    lateinit var disabledAuthValidator: DisabledAuthValidator
+
     override fun configure(): ResourceConfig {
-        val config: DashboardApiConfig = ConfigLoader.loadConfig("src/test/resources/dashboard_test.yml", args = emptyArray())
-        return ConfigLoader.loadResources(config.service.resourceConfig, config)
+        val config: DashboardApiConfig = ConfigLoader.loadConfig("src/test/resources/dashboard_test.yml", emptyArray())
+        val resourceConfig = ConfigLoader.loadResources(config.service.resourceConfig, config)
+        disabledAuthValidator = DisabledAuthValidator(config.auth)
+        resourceConfig.register(object : AbstractBinder() {
+            override fun configure() {
+                bind(disabledAuthValidator).to(AuthValidator::class.java).ranked(1)
+            }
+        })
+        return resourceConfig
     }
 
     override fun getTestContainerFactory(): TestContainerFactory {
@@ -55,8 +68,20 @@ class DashboardIntegrationTest: JerseyTest() {
     }
 
     @Test
-    fun testGetObservations() {
+    fun testGetObservationsNoToken() {
         val response = target("subject/sub-1/variables/observations").request().get()
         Assertions.assertEquals(401, response.status)
     }
+
+    @Test
+    fun testGetObservationsWithToken() {
+        val response = target("subject/sub-1/variables/observations")
+            .request()
+            .header(HttpHeaders.AUTHORIZATION, "Bearer " + "... encoded token ...")
+            .get()
+        Assertions.assertEquals(200, response.status)
+    }
+
+    // TODO add more tests that include the token validation.
+
 }
