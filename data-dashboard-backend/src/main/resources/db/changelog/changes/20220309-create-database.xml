@@ -22,7 +22,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-    <changeSet id="Create topic tables" author="pim">
+    <changeSet id="Create topic tables" author="pim" context="dev">
         <comment>Create topic tables</comment>
         <createTable tableName="android_phone_battery_level">
             <column name="timestamp" type="DATETIME"/>
