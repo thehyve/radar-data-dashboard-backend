@@ -13,7 +13,7 @@ the data from the RADAR-base kafka service.[]\
 
 Data dashboard applications can use the APIs as follows.
 
-`GET */subject/{subjectId}/variables/observations`
+`GET */subject/{subjectId}/topic/{topicId}/observations`
 
 Get all configured users for a particular source-type use `GET */users?source-type={source-type}`
 

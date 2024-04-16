@@ -20,27 +20,37 @@ package org.radarbase.datadashboard.api.resource
 
 import jakarta.annotation.Resource
 import jakarta.ws.rs.*
+import jakarta.ws.rs.container.ContainerRequestContext
 import jakarta.ws.rs.core.Context
+import jakarta.ws.rs.core.Response
 import org.radarbase.datadashboard.api.api.VariableListDto
 import org.radarbase.datadashboard.api.service.ObservationService
 import org.radarbase.auth.authorization.Permission
 import org.radarbase.jersey.auth.Authenticated
 import org.radarbase.jersey.auth.NeedsPermission
+import org.radarbase.jersey.auth.filter.RadarSecurityContext
 
-@Path("subject/{subjectId}/variables")
+@Path("subject/{subjectId}/topic/{topicId}")
 @Resource
 @Produces("application/json")
 @Consumes("application/json")
 @Authenticated
 class ObservationResource(
     @Context private val observationService: ObservationService,
+    @Context private val request: ContainerRequestContext
 ) {
     @GET
     @Path("observations")
     @NeedsPermission(Permission.MEASUREMENT_READ)
     fun getObservations(
-        @PathParam("subjectId") subjectId: String
-    ): VariableListDto {
-        return observationService.getObservations(subjectId)
+        @PathParam("subjectId") subjectId: String,
+        @PathParam("topicId") topicId: String
+    ): List<Map<String, Any>> {
+//        if (request.securityContext != null && request.securityContext is RadarSecurityContext) {
+//            val userName = (request.securityContext as RadarSecurityContext).userPrincipal
+//            if (!subjectId.equals(userName)) throw NotFoundException("Subjects can only access their own data.")
+            return observationService.getObservations(topicId, subjectId)
+//        }
+//        return emptyList()
     }
 }

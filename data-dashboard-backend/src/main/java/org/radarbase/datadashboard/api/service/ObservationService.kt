@@ -26,12 +26,7 @@ import org.radarbase.datadashboard.api.domain.mapper.toDto
 class ObservationService(
     @Context private val observationRepository: ObservationRepository
 ) {
-    fun getObservations(subjectId: String): VariableListDto {
-        val result = this.observationRepository.getObservations(subjectId)
-        return VariableListDto(
-            result
-                .groupBy { it.variable }
-                .map { it.toDto() },
-        )
+    fun getObservations(topicId: String, subjectId: String): List<Map<String, Any>> {
+        return  this.observationRepository.getObservations(topicId, subjectId)
     }
 }
