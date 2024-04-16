@@ -39,7 +39,8 @@ object Main {
             exitProcess(0)
         }
 
-        val config: DashboardApiConfig = ConfigLoader.loadConfig("dashboard.yml", args)
+        val configFile = args.firstOrNull() ?: "dashboard.yml"
+        val config: DashboardApiConfig = ConfigLoader.loadConfig(configFile, args)
         val resources = ConfigLoader.loadResources(config.service.resourceConfig, config.withEnv())
 
         GrizzlyServer(config.service.baseUri, resources).run {
