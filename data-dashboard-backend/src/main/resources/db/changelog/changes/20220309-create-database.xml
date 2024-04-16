@@ -21,43 +21,53 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
-    <property name="autoIncrement" value="true" dbms="h2,mysql,postgresql,oracle,mssql"/>
 
-    <changeSet id="Create variable and observation tables" author="pim">
-        <comment>Create variable and observation tables</comment>
-        <createTable tableName="variable">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
-                <constraints primaryKey="true" nullable="false"/>
+    <changeSet id="Create topic tables" author="pim">
+        <comment>Create topic tables</comment>
+        <createTable tableName="android_phone_battery_level">
+            <column name="timestamp" type="DATETIME"/>
+            <column name="projectId" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="name" type="varchar(255)"/>
-            <column name="type" type="varchar(255)"/>
-            <column name="category" type="varchar(255)"/>
-            <column name="date_type" type="varchar(255)"/>
+            <column name="userId" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="sourceId" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="time" type="DATETIME">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="timeReceived" type="DATETIME"/>
+            <column name="batteryLevel" type="INT"/>
+            <column name="isPlugged" type="boolean"/>
+            <column name="status" type="VARCHAR"/>
         </createTable>
 
-        <createTable tableName="observation">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
-                <constraints primaryKey="true" nullable="false"/>
+        <createTable tableName="android_phone_relative_location">
+            <column name="timestamp" type="DATETIME"/>
+            <column name="projectId" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="variable_id" type="bigint">
-                <constraints nullable="false"
-                             references="variable(id)"
-                             foreignKeyName="fk_observation_variable"/>
+            <column name="userId" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="subject_id" type="varchar(255)"/>
-            <column name="date" type="timestamp with time zone"/>
-            <column name="end_date" type="timestamp with time zone"/>
-            <column name="value_numeric" type="double"/>
-            <column name="value_textual" type="clob"/>
+            <column name="sourceId" type="VARCHAR">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="time" type="DATETIME">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="timeReceived" type="DATETIME"/>
+            <column name="offsetReference" type="INT"/>
+            <column name="provider" type="VARCHAR"/>
+            <column name="latitude" type="DOUBLE"/>
+            <column name="longitude" type="DOUBLE"/>
+            <column name="altitude" type="INT"/>
+            <column name="accuracy" type="INT"/>
+            <column name="speed" type="INT"/>
+            <column name="bearing" type="INT"/>
         </createTable>
-
-        <createIndex tableName="variable" indexName="idx_variable_name">
-            <column name="id"/>
-            <column name="name"/>
-        </createIndex>
-        <createIndex tableName="observation" indexName="idx_observation_variable">
-            <column name="variable_id"/>
-            <column name="subject_id"/>
-        </createIndex>
     </changeSet>
+
 </databaseChangeLog>
