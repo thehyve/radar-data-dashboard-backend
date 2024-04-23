@@ -15,8 +15,6 @@ Data dashboard applications can use the APIs as follows.
 
 `GET */subject/{subjectId}/topic/{topicId}/observations`
 
-Get all configured users for a particular source-type use `GET */users?source-type={source-type}`
-
 ## Installation
 
 To install functional RADAR-base Rest-Sources Authorizer application with minimal dependencies from source, please use
