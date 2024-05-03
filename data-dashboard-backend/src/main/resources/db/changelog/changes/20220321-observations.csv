@@ -1,0 +1,9 @@
+subject;topic;category;variable;value_numeric;value_textual;date;end_date
+sub-1;questionnaire_answer;baseline_questions;Perceived_Pain_Score;5;NULL;2021-02-20 00:00:00;NULL
+sub-1;questionnaire_answer;followup_questions;Name_Of_Physician;NULL;Dr.J.Adams;2021-02-20 00:00:00;NULL
+sub-2;questionnaire_answer;baseline_questions;Perceived_Pain_Score;2;NULL;2021-02-20 00:00:00;NULL
+sub-2;questionnaire_answer;followup_questions;Name_Of_Physician;NULL;Dr.G.Washington;2022-05-20 00:00:00;NULL
+sub-1;phone_battery_level;NULL;batteryLevel;5;NULL;2021-02-20 00:00:00;NULL
+sub-1;phone_battery_level;NULL;status;NULL;CHARGING;2021-02-20 00:00:00;NULL
+sub-2;phone_battery_level;NULL;batteryLevel;10;NULL;2021-02-20 00:00:00;NULL
+sub-2;phone_battery_level;NULL;status;NULL;FULL;2021-02-20 00:00:00;NULL

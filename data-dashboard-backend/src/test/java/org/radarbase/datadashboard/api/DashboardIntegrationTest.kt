@@ -28,15 +28,15 @@ import org.glassfish.jersey.test.ServletDeploymentContext
 import org.glassfish.jersey.test.grizzly.GrizzlyWebTestContainerFactory
 import org.glassfish.jersey.test.spi.TestContainerFactory
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.radarbase.datadashboard.api.config.DashboardApiConfig
+import org.radarbase.datadashboard.api.resource.ObservationResource
 import org.radarbase.jersey.auth.AuthValidator
 import org.radarbase.jersey.auth.disabled.DisabledAuthValidator
 import org.radarbase.jersey.config.ConfigLoader
 
 
-class DashboardIntegrationTest : JerseyTest() {
+class DashboardIntegrationTest: JerseyTest() {
 
     lateinit var disabledAuthValidator: DisabledAuthValidator
 
@@ -49,6 +49,7 @@ class DashboardIntegrationTest : JerseyTest() {
                 bind(disabledAuthValidator).to(AuthValidator::class.java).ranked(1)
             }
         })
+        resourceConfig.register(ObservationResource::class.java)
         return resourceConfig
     }
 
@@ -69,22 +70,17 @@ class DashboardIntegrationTest : JerseyTest() {
     }
 
     @Test
-    @Disabled("Manageportal authentication does not yet work (always code 200 returned)")
     fun testGetObservationsNoToken() {
-        val response =
-            target("subject/f09c03f1-617d-4c2b-b093-4936f75092fa/topic/android_phone_battery_level/observations").request()
-                .get()
+        val response = target("subject/sub-1/topic/phone_battery_level/observations").request().get()
         Assertions.assertEquals(401, response.status)
     }
 
     @Test
     fun testGetObservationsWithToken() {
-        val response =
-            target("subject/f09c03f1-617d-4c2b-b093-4936f75092fa/topic/android_phone_battery_level/observations")
-                .request()
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + "... encoded token ...")
-                .get()
-        val a = response.readEntity(String::class.java)
+        val response = target("subject/sub-1/topic/phone_battery_level/observations")
+            .request()
+            .header(HttpHeaders.AUTHORIZATION, "Bearer " + "... encoded token ...")
+            .get()
         Assertions.assertEquals(200, response.status)
     }
 

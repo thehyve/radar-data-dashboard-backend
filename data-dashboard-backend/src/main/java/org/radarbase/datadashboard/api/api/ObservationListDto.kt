@@ -19,6 +19,6 @@
 package org.radarbase.datadashboard.api.api
 
 /** List of variables. */
-data class VariableListDto(
-    val variables: List<VariableDto>,
+data class ObservationListDto(
+    val observations: List<ObservationDto>,
 )

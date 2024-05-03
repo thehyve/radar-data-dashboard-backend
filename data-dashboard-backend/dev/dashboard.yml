@@ -5,13 +5,13 @@ service:
 
 auth:
   managementPortal:
-    url: http://localhost:8080/managementportal
+    url: http://127.0.0.1:8080/managementportal
     clientId: data_dashboard_api
     clientSecret: data_dashboard_api_secret
   jwtResourceName: res_DataDashboardAPI
 
 database:
-  url: jdbc:postgresql://localhost:5432/data
+  url: jdbc:postgresql://127.0.0.1:5432/data
   user: radarbase
   password: radarbase
   dialect: org.hibernate.dialect.PostgreSQLDialect

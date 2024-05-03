@@ -22,38 +22,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="Add mock data for phone battery level" author="pim" context="dev">
+    <changeSet id="Add mock data for observations" author="pim" context="dev">
         <loadData
-            file="db/changelog/changes/20220321-android_phone_battery_level.csv"
+            file="db/changelog/changes/20220321-observations.csv"
             separator=";"
-            tableName="android_phone_battery_level"
-            usePreparedStatements="true"
-        >
-            <column name="projectId" type="STRING"/>
-            <column name="userId" type="STRING"/>
-            <column name="sourceId" type="STRING"/>
-            <column name="status" type="STRING"/>
+            tableName="observation"
+            usePreparedStatements="true">
+            <column name="value_numeric" type="NUMERIC"/>
+            <column name="value_textual" type="STRING"/>
         </loadData>
     </changeSet>
-
-    <changeSet id="Add mock data for phone relative location" author="pim" context="dev">
-        <loadData
-            file="db/changelog/changes/20220321-android_phone_relative_location.csv"
-            separator=";"
-            tableName="android_phone_relative_location"
-            usePreparedStatements="true"
-        >
-            <column name="projectId" type="STRING"/>
-            <column name="userId" type="STRING"/>
-            <column name="sourceId" type="STRING"/>
-            <column name="provider" type="STRING"/>
-            <column name="latitude" type="NUMERIC"/>
-            <column name="longitude" type="NUMERIC"/>
-            <column name="altitude" type="NUMERIC"/>
-            <column name="accuracy" type="NUMERIC"/>
-            <column name="speed" type="NUMERIC"/>
-            <column name="bearing" type="NUMERIC"/>
-        </loadData>
-    </changeSet>
-
 </databaseChangeLog>

@@ -19,14 +19,17 @@
 package org.radarbase.datadashboard.api.service
 
 import jakarta.ws.rs.core.Context
-import org.radarbase.datadashboard.api.api.VariableListDto
+import org.radarbase.datadashboard.api.api.ObservationListDto
 import org.radarbase.datadashboard.api.domain.ObservationRepository
 import org.radarbase.datadashboard.api.domain.mapper.toDto
 
 class ObservationService(
     @Context private val observationRepository: ObservationRepository
 ) {
-    fun getObservations(topicId: String, subjectId: String): List<Map<String, Any>> {
-        return  this.observationRepository.getObservations(topicId, subjectId)
+    fun getObservations(topicId: String, subjectId: String): ObservationListDto {
+        val result = this.observationRepository.getObservations(topicId, subjectId)
+        return ObservationListDto(
+            result.map { it.toDto() },
+        )
     }
 }
