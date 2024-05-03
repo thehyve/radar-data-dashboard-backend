@@ -24,7 +24,9 @@ import java.time.Duration
 
 fun Observation.toDto(): ObservationDto = ObservationDto(
     id = id,
+    project = project,
     subject = subject,
+    source = source,
     topic = topic,
     category = category,
     date = date?.toString(),

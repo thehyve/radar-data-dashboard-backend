@@ -71,13 +71,13 @@ class DashboardIntegrationTest: JerseyTest() {
 
     @Test
     fun testGetObservationsNoToken() {
-        val response = target("subject/sub-1/topic/phone_battery_level/observations").request().get()
+        val response = target("project/project-1/sub-1/topic/phone_battery_level/observations").request().get()
         Assertions.assertEquals(401, response.status)
     }
 
     @Test
     fun testGetObservationsWithToken() {
-        val response = target("subject/sub-1/topic/phone_battery_level/observations")
+        val response = target("project/project-1/subject/sub-1/topic/phone_battery_level/observations")
             .request()
             .header(HttpHeaders.AUTHORIZATION, "Bearer " + "... encoded token ...")
             .get()

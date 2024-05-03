@@ -36,11 +36,12 @@ import java.time.ZonedDateTime
 
 class ObservationResourceTest: JerseyTest() {
 
-
     @Mock
     lateinit var observationService: ObservationService
 
     private lateinit var observationListDto: ObservationListDto
+    private var observationId: Long = 1
+    private val projectId = "project-1"
     private val subjectId = "sub-1"
     private val topicId = "topic-1"
 
@@ -61,11 +62,7 @@ class ObservationResourceTest: JerseyTest() {
     @BeforeEach
     fun init() {
         // Create some fake observations that are returned by the service.
-        val obs1 = Observation(id = 1L, subject = subjectId, topic = "topic-1", category = "category-1", variable = "variable-1", date = ZonedDateTime.now(), valueTextual = "value1", valueNumeric = null, endDate = null)
-        val obs2 = Observation(id = 2L, subject = subjectId, topic = "topic-1", category = "category-1", variable = "variable-1", date = ZonedDateTime.now(), valueTextual = "value1", valueNumeric = null, endDate = null)
-        val obs3 = Observation(id = 3L, subject = subjectId, topic = "topic-1", category = "category-1", variable = "variable-1", date = ZonedDateTime.now(), valueTextual = "value1", valueNumeric = null, endDate = null)
-        val obs4 = Observation(id = 4L, subject = subjectId, topic = "topic-1", category = "category-1", variable = "variable-1", date = ZonedDateTime.now(), valueTextual = "value1", valueNumeric = null, endDate = null)
-        val observations: List<Observation> = listOf(obs1, obs2, obs3, obs4)
+        val observations: List<Observation> = listOf(createObservation(), createObservation(), createObservation(), createObservation())
         // Create Dto that should be returned by the ObservationService.
         observationListDto = ObservationListDto(
             observations.map { it.toDto() },
@@ -75,9 +72,9 @@ class ObservationResourceTest: JerseyTest() {
     @Test
     fun testGetObservations() {
         // Instruct the mock to return the fake observations when called.
-        `when`(observationService.getObservations(subjectId = subjectId, topicId = topicId)).thenReturn(observationListDto)
+        `when`(observationService.getObservations(projectId = projectId, subjectId = subjectId, topicId = topicId)).thenReturn(observationListDto)
         // Make the call to the REST endpoint.
-        val response = target("subject/sub-1/topic/topic-1/observations").request().get()
+        val response = target("project/project-1/subject/sub-1/topic/topic-1/observations").request().get()
         // Expect the http response to be OK and the same as the expected DTO.
         assertEquals(200, response.status)
         assertEquals(observationListDto, response.readEntity(ObservationListDto::class.java))
@@ -85,14 +82,36 @@ class ObservationResourceTest: JerseyTest() {
 
     @Test
     fun testGetObservations_failNoSubjectId() {
-        val response = target("subject//topic/topic-1/observations").request().get()
+        val response = target("project/project-1/subject//topic/topic-1/observations").request().get()
         assertEquals(404, response.status)
     }
 
     @Test
     fun testGetObservations_failNoTopicId() {
-        val response = target("subject/sub-1/topic//observations").request().get()
+        val response = target("project/project-1/subject/sub-1/topic//observations").request().get()
         assertEquals(404, response.status)
+    }
+
+    @Test
+    fun testGetObservations_failNoProjectId() {
+        val response = target("project//subject/sub-1/topic/topic-1/observations").request().get()
+        assertEquals(404, response.status)
+    }
+
+    private fun createObservation(): Observation {
+        return Observation(
+            id = observationId,
+            project = "project-1",
+            subject = subjectId,
+            source = "source-1",
+            topic = "topic-1",
+            category = "category-1",
+            variable = "variable-1",
+            date = ZonedDateTime.now(),
+            valueTextual = "value1",
+            valueNumeric = null,
+            endDate = null
+        )
     }
 
 }

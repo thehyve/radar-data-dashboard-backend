@@ -32,7 +32,14 @@ data class Observation(
 
     @Column(nullable = false)
     @Id
+    val project: String,
+
+    @Column(nullable = false)
+    @Id
     val subject: String,
+
+    @Id
+    val source: String,
 
     @Column(nullable = false)
     @Id

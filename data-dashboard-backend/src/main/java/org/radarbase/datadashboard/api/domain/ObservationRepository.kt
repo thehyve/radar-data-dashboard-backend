@@ -29,14 +29,15 @@ class ObservationRepository(
     @Context em: Provider<EntityManager>,
 ) : HibernateRepository(em) {
 
-    fun getObservations(topicId: String, subjectId: String): List<Observation> {
-        logger.debug("Get observations in topic {} of subject {}", topicId, subjectId)
+    fun getObservations(projectId: String, subjectId: String, topicId: String): List<Observation> {
+        logger.debug("Get observations in topic {} of subject {} in project {}", topicId, subjectId, projectId)
 
         return transact {
             createQuery(
-                "SELECT o FROM Observation o WHERE o.subject = :subjectId AND o.topic = :topicId ORDER BY o.date DESC",
+                "SELECT o FROM Observation o WHERE o.project = :projectId AND o.subject = :subjectId AND o.topic = :topicId ORDER BY o.date DESC",
                 Observation::class.java,
             ).apply {
+                setParameter("projectId", projectId)
                 setParameter("subjectId", subjectId)
                 setParameter("topicId", topicId)
             }.resultList

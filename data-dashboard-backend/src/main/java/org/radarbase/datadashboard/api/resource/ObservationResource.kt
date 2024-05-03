@@ -30,7 +30,7 @@ import org.radarbase.jersey.auth.NeedsPermission
 import org.radarbase.jersey.auth.filter.RadarSecurityContext
 import org.slf4j.LoggerFactory
 
-@Path("subject/{subjectId}/topic/{topicId}")
+@Path("project/{projectId}/subject/{subjectId}/topic/{topicId}")
 @Resource
 @Produces("application/json")
 @Consumes("application/json")
@@ -43,6 +43,7 @@ class ObservationResource(
     @Path("observations")
     @NeedsPermission(Permission.MEASUREMENT_READ)
     fun getObservations(
+        @PathParam("projectId") projectId: String,
         @PathParam("subjectId") subjectId: String,
         @PathParam("topicId") topicId: String
     ): ObservationListDto {
@@ -50,7 +51,7 @@ class ObservationResource(
             val userName = (request.securityContext as RadarSecurityContext).userPrincipal
             log.info("User $userName is accessing observations for $subjectId")
             if (!subjectId.equals(userName)) throw NotFoundException("Subjects can only request their own observations.")
-            return observationService.getObservations(topicId, subjectId)
+            return observationService.getObservations(projectId = projectId, subjectId = subjectId, topicId = topicId)
         }
         return ObservationListDto(emptyList())
     }

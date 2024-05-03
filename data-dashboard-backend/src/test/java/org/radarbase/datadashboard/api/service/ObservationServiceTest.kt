@@ -31,11 +31,14 @@ import java.time.ZonedDateTime
 
 class ObservationServiceTest {
 
-    val subjectId = "sub-1"
-
     // Create a Mockito mock of the ObservationRepository. This is instantiated in the init block.
     @Mock
     private lateinit var observationRepository: ObservationRepository
+
+    private var observationId: Long = 1
+    private val projectId = "project-1"
+    private val subjectId = "sub-1"
+    private val topicId = "topic-1"
 
     private val observationService: ObservationService
 
@@ -53,23 +56,35 @@ class ObservationServiceTest {
 
         // Create some fake observations that are returned by the repository.
         // Each observation is linked to a Variable.
-        val obs1 = Observation(id = 1L, subject = subjectId, topic = "topic-1", category = "category-1", variable = "variable-1", date = ZonedDateTime.now(), valueTextual = "value1", valueNumeric = null, endDate = null)
-        val obs2 = Observation(id = 2L, subject = subjectId, topic = "topic-1", category = "category-1", variable = "variable-1", date = ZonedDateTime.now(), valueTextual = "value1", valueNumeric = null, endDate = null)
-        val obs3 = Observation(id = 3L, subject = subjectId, topic = "topic-1", category = "category-1", variable = "variable-1", date = ZonedDateTime.now(), valueTextual = "value1", valueNumeric = null, endDate = null)
-        val obs4 = Observation(id = 4L, subject = subjectId, topic = "topic-1", category = "category-1", variable = "variable-1", date = ZonedDateTime.now(), valueTextual = "value1", valueNumeric = null, endDate = null)
-        val observations = listOf(obs1, obs2, obs3, obs4)
+        val observations: List<Observation> = listOf(createObservation(), createObservation(), createObservation(), createObservation())
 
         // Mock the repository to return the fake observations.
-        `when`(observationRepository.getObservations(subjectId = subjectId, topicId = "topic-1")).thenReturn(observations)
+        `when`(observationRepository.getObservations(projectId = projectId, subjectId = subjectId, topicId = topicId)).thenReturn(observations)
 
         // Call the ObservationService (class under test) to get the observations.
-        val result = observationService.getObservations(subjectId = subjectId, topicId = "topic-1")
+        val result = observationService.getObservations(projectId = projectId, subjectId = subjectId, topicId = topicId)
 
         // Check if the result is as expected (observations transformed to ObservationListDto).
         val expectedDto = ObservationListDto(
             observations.map { it.toDto() }
         )
         assertEquals(expectedDto, result)
+    }
+
+    private fun createObservation(): Observation {
+        return Observation(
+            id = observationId,
+            project = "project-1",
+            subject = subjectId,
+            source = "source-1",
+            topic = "topic-1",
+            category = "category-1",
+            variable = "variable-1",
+            date = ZonedDateTime.now(),
+            valueTextual = "value1",
+            valueNumeric = null,
+            endDate = null
+        )
     }
 
 }

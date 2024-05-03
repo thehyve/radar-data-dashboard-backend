@@ -23,8 +23,14 @@ data class ObservationDto(
     /** Unique observation ID. */
     val id: Long?,
 
+    /** Unique identifier of project. */
+    val project: String?,
+
     /** Unique identifier of study subject. */
     val subject: String?,
+
+    /** Unique identifier of the data source. */
+    val source: String?,
 
     /** Unique identifier of the kafka topic. */
     val topic: String?,
