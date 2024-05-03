@@ -23,7 +23,7 @@
     https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
     <property name="autoIncrement" value="true" dbms="h2,mysql,postgresql,oracle,mssql"/>
 
-    <changeSet id="Create observation tables" author="pim">
+    <changeSet id="Create observation tables" author="pim" context="dev">
         <createTable tableName="observation">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
