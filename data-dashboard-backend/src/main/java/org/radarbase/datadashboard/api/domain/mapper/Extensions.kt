@@ -23,7 +23,6 @@ import org.radarbase.datadashboard.api.domain.model.Observation
 import java.time.Duration
 
 fun Observation.toDto(): ObservationDto = ObservationDto(
-    id = id,
     project = project,
     subject = subject,
     source = source,

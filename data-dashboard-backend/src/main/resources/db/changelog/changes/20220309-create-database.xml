@@ -25,9 +25,6 @@
 
     <changeSet id="Create observation tables" author="pim" context="dev">
         <createTable tableName="observation">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
             <column name="project" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

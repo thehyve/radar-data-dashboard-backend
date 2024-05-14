@@ -25,11 +25,6 @@ import java.util.*
 @Entity
 @Table(name = "observation")
 data class Observation(
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false, nullable = false)
-    @Id
-    val id: Long,
-
     @Column(nullable = false)
     @Id
     val project: String,

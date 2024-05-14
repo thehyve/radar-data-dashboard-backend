@@ -100,7 +100,6 @@ class ObservationResourceTest: JerseyTest() {
 
     private fun createObservation(): Observation {
         return Observation(
-            id = observationId,
             project = "project-1",
             subject = subjectId,
             source = "source-1",
