@@ -35,8 +35,7 @@ import org.radarbase.jersey.auth.AuthValidator
 import org.radarbase.jersey.auth.disabled.DisabledAuthValidator
 import org.radarbase.jersey.config.ConfigLoader
 
-
-class DashboardIntegrationTest: JerseyTest() {
+class DashboardIntegrationTest : JerseyTest() {
 
     lateinit var disabledAuthValidator: DisabledAuthValidator
 
@@ -85,5 +84,4 @@ class DashboardIntegrationTest: JerseyTest() {
     }
 
     // TODO add more tests that include the token validation.
-
 }

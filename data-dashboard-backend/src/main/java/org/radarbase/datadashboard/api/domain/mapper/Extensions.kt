@@ -28,12 +28,11 @@ fun Observation.toDto(): ObservationDto = ObservationDto(
     source = source,
     topic = topic,
     category = category,
-    date = date?.toString(),
-    period = if (date != null && endDate != null) {
+    date = date.toString(),
+    period = if (endDate != null) {
         Duration.between(date, endDate).toString()
     } else {
         null
     },
     value = valueNumeric ?: valueTextual,
 )
-

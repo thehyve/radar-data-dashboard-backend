@@ -19,12 +19,17 @@
 package org.radarbase.datadashboard.api.resource
 
 import jakarta.annotation.Resource
-import jakarta.ws.rs.*
+import jakarta.ws.rs.Consumes
+import jakarta.ws.rs.GET
+import jakarta.ws.rs.NotFoundException
+import jakarta.ws.rs.Path
+import jakarta.ws.rs.PathParam
+import jakarta.ws.rs.Produces
 import jakarta.ws.rs.container.ContainerRequestContext
 import jakarta.ws.rs.core.Context
-import org.radarbase.datadashboard.api.service.ObservationService
 import org.radarbase.auth.authorization.Permission
 import org.radarbase.datadashboard.api.api.ObservationListDto
+import org.radarbase.datadashboard.api.service.ObservationService
 import org.radarbase.jersey.auth.Authenticated
 import org.radarbase.jersey.auth.NeedsPermission
 import org.radarbase.jersey.auth.filter.RadarSecurityContext
@@ -37,7 +42,7 @@ import org.slf4j.LoggerFactory
 @Authenticated
 class ObservationResource(
     @Context private val observationService: ObservationService,
-    @Context private val request: ContainerRequestContext
+    @Context private val request: ContainerRequestContext,
 ) {
     @GET
     @Path("observations")
@@ -45,7 +50,7 @@ class ObservationResource(
     fun getObservations(
         @PathParam("projectId") projectId: String,
         @PathParam("subjectId") subjectId: String,
-        @PathParam("topicId") topicId: String
+        @PathParam("topicId") topicId: String,
     ): ObservationListDto {
         if (request.securityContext != null && request.securityContext is RadarSecurityContext) {
             val userName = (request.securityContext as RadarSecurityContext).userPrincipal

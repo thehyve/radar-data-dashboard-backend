@@ -18,11 +18,11 @@
 
 package org.radarbase.datadashboard.api.enhancer
 
+import jakarta.inject.Singleton
+import org.glassfish.jersey.internal.inject.AbstractBinder
 import org.radarbase.datadashboard.api.config.DashboardApiConfig
 import org.radarbase.datadashboard.api.domain.ObservationRepository
 import org.radarbase.datadashboard.api.service.ObservationService
-import jakarta.inject.Singleton
-import org.glassfish.jersey.internal.inject.AbstractBinder
 import org.radarbase.jersey.enhancer.JerseyResourceEnhancer
 import org.radarbase.jersey.filter.Filters
 
@@ -51,6 +51,5 @@ class DashboardApiEnhancer(
         bind(ObservationRepository::class.java)
             .to(ObservationRepository::class.java)
             .`in`(Singleton::class.java)
-
     }
 }

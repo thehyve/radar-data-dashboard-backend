@@ -39,7 +39,7 @@ class DashBoardApiEnhancerFactory(
         HibernateResourceEnhancer(
             config.database.copy(
                 managedClasses = listOf(
-                    Observation::class.jvmName
+                    Observation::class.jvmName,
                 ),
             ),
         ),

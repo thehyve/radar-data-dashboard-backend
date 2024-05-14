@@ -34,7 +34,7 @@ import org.radarbase.datadashboard.api.domain.model.Observation
 import org.radarbase.datadashboard.api.service.ObservationService
 import java.time.ZonedDateTime
 
-class ObservationResourceTest: JerseyTest() {
+class ObservationResourceTest : JerseyTest() {
 
     @Mock
     lateinit var observationService: ObservationService
@@ -109,8 +109,7 @@ class ObservationResourceTest: JerseyTest() {
             date = ZonedDateTime.now(),
             valueTextual = "value1",
             valueNumeric = null,
-            endDate = null
+            endDate = null,
         )
     }
-
 }

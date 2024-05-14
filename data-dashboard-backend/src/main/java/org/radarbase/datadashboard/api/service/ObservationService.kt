@@ -24,7 +24,7 @@ import org.radarbase.datadashboard.api.domain.ObservationRepository
 import org.radarbase.datadashboard.api.domain.mapper.toDto
 
 class ObservationService(
-    @Context private val observationRepository: ObservationRepository
+    @Context private val observationRepository: ObservationRepository,
 ) {
     fun getObservations(projectId: String, subjectId: String, topicId: String): ObservationListDto {
         val result = this.observationRepository.getObservations(projectId = projectId, topicId = topicId, subjectId = subjectId)

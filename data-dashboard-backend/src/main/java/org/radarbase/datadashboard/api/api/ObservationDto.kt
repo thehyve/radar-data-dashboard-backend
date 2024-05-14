@@ -20,8 +20,6 @@ package org.radarbase.datadashboard.api.api
 
 /** Single observation or data point. */
 data class ObservationDto(
-    /** Unique observation ID. */
-    val id: Long?,
 
     /** Unique identifier of project. */
     val project: String?,

@@ -53,7 +53,6 @@ class ObservationServiceTest {
      * */
     @Test
     fun test_getObservations1() {
-
         // Create some fake observations that are returned by the repository.
         // Each observation is linked to a Variable.
         val observations: List<Observation> = listOf(createObservation(), createObservation(), createObservation(), createObservation())
@@ -66,7 +65,7 @@ class ObservationServiceTest {
 
         // Check if the result is as expected (observations transformed to ObservationListDto).
         val expectedDto = ObservationListDto(
-            observations.map { it.toDto() }
+            observations.map { it.toDto() },
         )
         assertEquals(expectedDto, result)
     }
@@ -82,8 +81,7 @@ class ObservationServiceTest {
             date = ZonedDateTime.now(),
             valueTextual = "value1",
             valueNumeric = null,
-            endDate = null
+            endDate = null,
         )
     }
-
 }
