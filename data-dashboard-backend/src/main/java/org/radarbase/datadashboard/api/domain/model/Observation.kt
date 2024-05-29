@@ -43,7 +43,6 @@ data class Observation(
     @Id
     val topic: String,
 
-    @Id
     val category: String,
 
     @Column(nullable = false)
