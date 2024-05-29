@@ -6,7 +6,7 @@ on:
     types: [published]
 
 env:
-  DOCKER_IMAGE: radarbase/data-dashboard-backend
+  DOCKER_IMAGE: radarbase/radar-data-dashboard-backend
 
 jobs:
   # Build and push tagged release docker image
