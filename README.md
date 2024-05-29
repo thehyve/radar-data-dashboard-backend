@@ -43,8 +43,7 @@ The OAuth client for authorizer-app-backend should have the following properties
 ```properties
 client-id:data_dashboard_api
 client-secret:Confidential
-grant-type:client_credentials
+grant-type:authorization_code,refresh_token
 resources:res_DataDashboardAPI
 scope:MEASUREMENT.READ
 ```
-
